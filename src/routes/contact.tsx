@@ -9,6 +9,10 @@ type Contact = {
   favorite: boolean;
 };
 
+/**
+ * 連絡先情報をレンダリングします。
+ * @returns 連絡先情報を表すJSX要素です。
+ */
 export default function Contact() {
   const contact: Contact = {
     first: "Your",
@@ -79,9 +83,16 @@ export default function Contact() {
 }
 
 type Props = Contact;
+/**
+ * お気に入りボタンを表示するためのコンポーネントです。
+ *
+ * @param {Object} props - コンポーネントのプロパティ。
+ * @param {Object} props.contact - 連絡先オブジェクト。
+ * @param {boolean} props.contact.favorite - 連絡先がお気に入りかどうかを示します。
+ * @returns {JSX.Element} お気に入りボタンのコンポーネント。
+ */
 function Favorite({ contact }: { contact: Props }) {
-  // yes, this is a `let` for later
-  let favorite = contact.favorite;
+  const favorite = contact.favorite;
   return (
     <Form method="post">
       <button
