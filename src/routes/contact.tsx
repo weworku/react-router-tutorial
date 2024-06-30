@@ -1,6 +1,12 @@
-import { Form } from "react-router-dom";
+import { Form, useLoaderData } from "react-router-dom";
+import { getContact } from "../contacts";
 
-type Contact = {
+export async function loader({ params }: { params: any }) {
+  const contact = await getContact(params.contactId);
+  return { contact };
+}
+export type Contact = {
+  contactId: string;
   first: string;
   last: string;
   avatar: string;
@@ -14,14 +20,7 @@ type Contact = {
  * @returns 連絡先情報を表すJSX要素です。
  */
 export default function Contact() {
-  const contact: Contact = {
-    first: "Your",
-    last: "Name",
-    avatar: "https://placekitten.com/g/200/200",
-    twitter: "your_handle",
-    notes: "Some notes",
-    favorite: true,
-  };
+  const contact = useLoaderData() as Contact;
 
   return (
     <div id="contact">
